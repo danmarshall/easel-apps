@@ -1,0 +1,28 @@
+{
+  "name": "easel-apps",
+  "version": "1.0.0",
+  "description": "Apps for Inventables Easel",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/danmarshall/easel-apps.git"
+  },
+  "keywords": [
+    "Inventables",
+    "Easel",
+    "Makerjs"
+  ],
+  "author": "Dan Marshall",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/danmarshall/easel-apps/issues"
+  },
+  "homepage": "https://github.com/danmarshall/easel-apps#readme",
+  "dependencies": {
+    "makerjs": "^0.9.53",
+    "makerjs-easel-api": "^1.0.1"
+  }
+}
