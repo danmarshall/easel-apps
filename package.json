@@ -23,6 +23,6 @@
   "homepage": "https://github.com/danmarshall/easel-apps#readme",
   "dependencies": {
     "makerjs": "^0.9.53",
-    "makerjs-easel-api": "^1.0.1"
+    "makerjs-easel-api": "^1.1.0"
   }
 }
