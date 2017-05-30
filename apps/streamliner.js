@@ -26,7 +26,7 @@ var meapi = require('makerjs-easel-api');
 // Define a properties array that returns array of objects representing
 // the accepted properties for your application
 var properties = [
-    { type: 'range', id: "Radius", value: 2, min: 0, max: 20, step: 0.5 },
+    { type: 'range', id: "Radius in mm", value: 2, min: 0, max: 20, step: 0.5 },
     { type: 'boolean', id: "Replace", value: false }
 ];
 
@@ -35,7 +35,7 @@ var properties = [
 // callback if unable to do so
 var executor = function (args, success, failure) {
     var params = args.params;
-    var radius = params.Radius * makerjs.units.conversionScale('mm', 'inch');
+    var radius = params["Radius in mm"] * makerjs.units.conversionScale('mm', 'inch');
 
     //get selected volume
     if (args.selectedVolumeIds.length > 1) {
@@ -65,7 +65,8 @@ var executor = function (args, success, failure) {
     var model = meapi.importEaselShape(shape);
 
     var allPoints = [];
-    var measurement;
+    var allChainModels = { models: {} };
+    var chainModelIndex = 0;
 
     makerjs.model.findChains(model, function (chains, loose, layer) {
 
@@ -78,9 +79,7 @@ var executor = function (args, success, failure) {
                 chainModel.models = { fillets: fillets };
             }
 
-            if (!measurement) {
-                measurement = makerjs.measure.modelExtents(chainModel);
-            }
+            allChainModels.models[chainModelIndex++] = chainModel;
 
             //now find a new chain including the fillets
             var fChain = makerjs.model.findSingleChain(chainModel);
@@ -89,6 +88,8 @@ var executor = function (args, success, failure) {
 
         });
     });
+
+    var measurement = makerjs.measure.modelExtents(allChainModels);
 
     var volume = {
         shape: {
