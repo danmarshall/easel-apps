@@ -26,10 +26,10 @@ var meapi = require('makerjs-easel-api');
 // Define a properties array that returns array of objects representing
 // the accepted properties for your application
 var properties = [
-    { id: 'hexWidth', type: 'range', min: 1, max: 100, value: 2 },
-    { id: 'margin', type: 'range', min: 0, max: 100, value: .3 },
-    { id: 'x count', type: 'range', min: 1, max: 50, value: 7 },
-    { id: 'y count', type: 'range', min: 1, max: 50, value: 7 },
+    { id: 'Hex width in mm', type: 'range', min: 2, max: 100, value: 20 },
+    { id: 'Margin', type: 'range', min: 0, max: 16, value: 3 },
+    { id: 'Columns', type: 'range', min: 1, max: 50, value: 7 },
+    { id: 'Rows', type: 'range', min: 1, max: 50, value: 7 },
 ];
 
 // Define an executor function that builds an array of volumes,
@@ -41,10 +41,10 @@ var executor = function (args, success, failure) {
 
     var mmScale = makerjs.units.conversionScale('mm', 'inch');
 
-    var hexWidth = params["hexWidth"] * mmScale;
-    var margin = params["margin"] * mmScale;
-    var xcount = params["x count"];
-    var ycount = params["y count"];
+    var hexWidth = params["Hex width in mm"] * mmScale;
+    var margin = params["Margin"] * mmScale;
+    var xcount = params["Columns"];
+    var ycount = params["Rows"];
 
     var hex = new makerjs.models.Polygon(6, hexWidth / 2, 30, true);
 
