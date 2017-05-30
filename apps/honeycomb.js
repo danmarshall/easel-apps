@@ -27,7 +27,7 @@ var meapi = require('makerjs-easel-api');
 // the accepted properties for your application
 var properties = [
     { id: 'Hex width in mm', type: 'range', min: 2, max: 100, value: 20 },
-    { id: 'Margin', type: 'range', min: 0, max: 16, value: 3 },
+    { id: 'Margin in mm', type: 'range', min: 0, max: 16, value: 3 },
     { id: 'Columns', type: 'range', min: 1, max: 50, value: 7 },
     { id: 'Rows', type: 'range', min: 1, max: 50, value: 7 },
 ];
@@ -42,7 +42,7 @@ var executor = function (args, success, failure) {
     var mmScale = makerjs.units.conversionScale('mm', 'inch');
 
     var hexWidth = params["Hex width in mm"] * mmScale;
-    var margin = params["Margin"] * mmScale;
+    var margin = params["Margin in mm"] * mmScale;
     var xcount = params["Columns"];
     var ycount = params["Rows"];
 
